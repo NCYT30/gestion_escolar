@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="{% static 'js/global.js' %}"></script>
+
+
+    <header> 
+        <nav>
+            <ul>
+                <li><a href="{% url 'profesor' %}">Profesores</a></li>
+                <li><a href="{% url 'curso' %}">Cursos</a></li>
+                <li><a href="{% url 'estudiantes' %}">Estudiantes</a></li>
+                <li><a href="{% url 'evento' %}">Eventos</a></li>
+                <li><a href="{% url 'aula' %}">Aulas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'horario' %}">Horario</a></li>
+            <li><a href="{% url 'calificaciones'%}">Calificaciones</a></li>
+            <li><a href="{% url 'asignatura' %}">Asignaturas</a></li>
+            <li><a href="{% url 'asigprofe'%}">Asociar asignatura</a></li>
+        </ul>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Crear nueva aula</h2>
+            <form id="modal-form" action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="aula-id" name="aula_id">
+                <div class="form-group">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="capacidad">Capacidad:</label>
+                    <input type="number" id="capacidad" name="capacidad" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="edificio">Edificio:</label>
+                    <input type="text" id="edificio" name="edificio" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="piso">Piso:</label>
+                    <input type="number" id="piso" name="piso" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="ubicacion">Ubicación:</label>
+                    <input type="text" id="ubicacion" name="ubicacion" class="form-control" required>
+                </div>
+                <input type="submit" value="Guardar" class="btn-crear">
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="modal_evento" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Crear nuevo evento</h2>
+            <form id="evento-form" method="POST">
+                {% csrf_token %}
+                <input type="hidden" id="evento-id" name="evento_id">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripcion:</label>
+                    <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo_evento">Tipo de evento</label>
+                    <input type="text" id="tipo_evento" name="tipo_evento" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="ubicacion_evento">Ubicacion</label>
+                    <input type="text" id="ubicacion_evento" name="ubicacion" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="organizador">Organizador</label>
+                    <input type="text" id="organizador" name="organizador" class="form-control" required>
+                </div>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+        
+    <div id="modal_asig" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Crear nueva asignatura</h2>
+            <form id="asig-form" method="POST">
+                {% csrf_token %}
+                <input type="hidden" id="asig-id" name="asig_id">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre_asig" name="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripcion:</label>
+                    <input type="text" id="descripcion_asig" name="descripcion" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="creditos">Creditos</label>
+                    <input type="number" id="creditos" name="creditos" class="form-control" required>
+                </div>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal_profesor" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Crear nuevo profesor</h2>
+            <form id="profesor-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nombre_profesor">Nombre:</label>
+                    <input type="text" id="nombre_profesor" name="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="especialidad">Especialidad:</label>
+                    <input type="text" id="especialidad" name="especialidad" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha_inicio">Fecha de inicio:</label>
+                    <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="salario">Salario:</label>
+                    <input type="number" id="salario" name="salario" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="foto">Foto:</label>
+                    <input type="file" id="foto" name="foto" class="form-control-file" required accept="image/*">
+                </div>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

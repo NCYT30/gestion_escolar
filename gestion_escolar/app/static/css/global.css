@@ -1,0 +1,252 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.sidebar {
+    background-color: #333333;
+    color: #fff;
+    width: 170px;
+    padding: 20px;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    bottom: 0;
+}
+
+.sidebar h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 25px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 380px;
+    margin-top: 75px;
+    width: 90%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn {
+    position: absolute;
+    top: 100px;
+    left: 20%;
+    transform: translateX(-50%); 
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+section {
+    max-width: 80%;
+    width: 80vw;
+    margin: 0 auto;
+    overflow: auto;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
+    top: 145px;
+    left: 7%;
+}
+
+.card {
+    width: 300px;
+    max-width: 300px;
+    margin: 0 10px 15px 0;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(145, 255, 0, 0.1);
+    overflow: hidden;
+    word-wrap: break-word;
+    hyphens: auto;
+    height: fit-content;
+}
+
+.card h2,
+.card p {
+    text-align: center;
+}
+
+
+.icon-left {
+    float: right;
+    margin-right: 10px;
+}
+
+.icon-right {
+    float: right;
+    margin-right: 10px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.modal-content h2 {
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.modal-content label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-content input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.modal-content .btn-crear {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+.modal-content .btn-crear:hover {
+    background-color: #45a049;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+.responsive-table th, .responsive-table td {
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.responsive-table img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+    margin-right: 10px;
+}

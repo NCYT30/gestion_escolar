@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <button id="btnCurso" class="btn">Crear curso</button>
+
+    <section>
+        {% for curso in cursos %}
+        <div class="card">
+            <i class="fas fa-edit icon-left editCurso" data-id="{{ curso.id }}"></i>
+            <form action="{% url 'curso_delete' curso.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="icon-right btn-delete"><i class="fas fa-trash"></i></button>
+            </form>
+            <h2>{{ curso.nombre }}</h2>
+            <p><strong>Descripción:</strong> {{ curso.descripcion }}</p>
+            <p><strong>Créditos:</strong> {{ curso.creditos }}</p>
+            <p><strong>Año Académico:</strong> {{ curso.ano_academico }}</p>
+            <p><strong>Duración:</strong> {{ curso.duracion }}</p>
+            <p><strong>Requisitos Previos:</strong> {{ curso.requisitos_previos }}</p>
+            <p><strong>Materiales Requeridos:</strong> {{ curso.materiales_requeridos }}</p>
+            <p><strong>Costo:</strong> {{ curso.costo }}</p>
+            <p><strong>Estado:</strong> {{ curso.estado }}</p>
+        </div>
+        {% endfor %}
+    </section>
+    
+    
+    <div id="modal_curso" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Crear nuevo curso</h2>
+            <form id="curso-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="creditos">Créditos:</label>
+                    <input type="number" id="creditos" name="creditos" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="ano_academico">Año académico:</label>
+                    <input type="number" id="ano_academico" name="ano_academico" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="duracion">Duración:</label>
+                    <input type="text" id="duracion" name="duracion" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="requisitos_previos">Requisitos previos:</label>
+                    <textarea id="requisitos_previos" name="requisitos_previos" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="materiales_requeridos">Materiales requeridos:</label>
+                    <textarea id="materiales_requeridos" name="materiales_requeridos" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="costo">Costo:</label>
+                    <input type="text" id="costo" name="costo" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado" class="form-control" required>
+                </div>
+                <input type="submit" value="Guardar" class="btn-crear">
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

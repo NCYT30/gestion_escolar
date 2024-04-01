@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <button id="btnCrearProfesor" class="btn">Crear profesor</button>
+
+    <section>
+        <div class="table-wrapper">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Especialidad</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Fecha de inicio</th>
+                        <th>Salario</th>
+                        <th>Foto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profe in profesores %}
+                    <tr>
+                        <td>{{ profe.nombre }}</td>
+                        <td>{{ profe.especialidad }}</td>
+                        <td>{{ profe.email }}</td>
+                        <td>{{ profe.telefono }}</td>
+                        <td>{{ profe.fecha_inicio }}</td>
+                        <td>{{ profe.salario }}</td>
+                        <td><img src="{{ profe.foto.url }}" alt="Foto de {{ profe.nombre }}"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </section>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <button id="btnHorario" class="btn">Crear horario</button>
+
+    <section>
+        {% for horario in horarios %}
+        <div class="card">
+            <i class="fas fa-edit icon-left editHorario" data-id="{{ horario.id }}"></i>
+            <form action="{% url 'horario_delete' horario.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="icon-right btn-delete"><i class="fas fa-trash"></i></button>
+            </form>
+            <h2>Curso: {{ horario.curso.nombre }}</h2>
+            <p><strong>Profesor:</strong> {{ horario.profesor.nombre }}</p>
+            <p><strong>Día de la semana:</strong> {{ horario.dia_semana }}</p>
+            <p><strong>Hora de inicio:</strong> {{ horario.hora_inicio }}</p>
+            <p><strong>Hora de fin:</strong> {{ horario.hora_fin }}</p>
+            <p><strong>Período académico:</strong> {{ horario.periodo_academico }}</p>
+        </div>
+        {% endfor %}
+    </section>
+    
+    
+    <div id="modal_horario" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Crear nuevo horario</h2>
+            <form id="horario-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="curso">Curso:</label>
+                    <select id="curso" name="curso" class="form-control" required>
+                        {% for curso in cursos_disponibles %}
+                            <option value="{{ curso.id }}">{{ curso.nombre }}</option>
+                        {% endfor %}
+                    </select>                    
+                </div>
+                <div class="form-group">
+                    <label for="profesor">Profesor:</label>
+                    <select id="profesor" name="profesor" class="form-control" required>
+                        {% for profesor in profesores_disponibles %}
+                            <option value="{{ profesor.id }}">{{ profesor.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dia_semana">Día de la semana:</label>
+                    <input type="text" id="dia_semana" name="dia_semana" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="hora_inicio">Hora de inicio:</label>
+                    <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="hora_fin">Hora de fin:</label>
+                    <input type="time" id="hora_fin" name="hora_fin" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="periodo_academico">Período académico:</label>
+                    <input type="text" id="periodo_academico" name="periodo_academico" class="form-control" required>
+                </div>
+                <input type="submit" value="Guardar" class="btn-crear">
+            </form>
+        </div>
+    </div>
+    
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <button id="btnCrearEvento" class="btn">Crear evento</button>
+
+    <section>
+        {% for event in evento%}
+        <div class="card">
+            <i class="fas fa-edit icon-left editIE" data-id="{{ event.id }}"></i>
+            <form action="{% url 'evento_delete' event.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="icon-right btn-delete"><i class="fas fa-trash"></i></button>
+            </form>
+            <h2>{{event.nombre}}</h2>
+            <p><strong>Descripcion</strong>{{event.descripcion}}</p>
+            <p><strong>Fecha</strong>{{event.fecha}}</p>
+            <p><strong>Tipo de evento</strong>{{event.tipo_evento}}</p>
+            <p><strong>Ubicacion</strong>{{event.ubicacion}}</p>
+            <p><strong>Organizador</strong>{{event.organizador}}</p>
+        </div>
+        {% endfor %}
+    </section>
+
+{% endblock %}

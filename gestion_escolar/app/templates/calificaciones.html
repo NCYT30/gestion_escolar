@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <button id="btnCalificacion" class="btn">Crear calificación</button>
+
+    <section>
+        {% for calificacion in calificaciones %}
+        <div class="card">
+            <i class="fas fa-edit icon-left editCalificacion" data-id="{{ calificacion.id }}"></i>
+            <form action="{% url 'calificacion_delete' calificacion.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="icon-right btn-delete"><i class="fas fa-trash"></i></button>
+            </form>
+            <h2>{{ calificacion.estudiante.nombre }}</h2>
+            <p><strong>Curso:</strong> {{ calificacion.curso.nombre }}</p>
+        </div>
+        {% endfor %}
+    </section>
+    
+    <div id="modal_calificacion" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Crear nueva calificación</h2>
+            <form id="calificacion-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="estudiante">Estudiante:</label>
+                    <select id="estudiante" name="estudiante" class="form-control" required>
+                        {% for estudiante in estudiantes %}
+                            <option value="{{ estudiante.id }}">{{ estudiante.nombre }}</option>
+                        {% endfor %}
+                    </select>                    
+                </div>
+                <div class="form-group">
+                    <label for="curso">Curso:</label>
+                    <select id="curso" name="curso" class="form-control" required>
+                        {% for curso in cursos %}
+                            <option value="{{ curso.id }}">{{ curso.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

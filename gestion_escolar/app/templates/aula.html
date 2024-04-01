@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <button id="btnCrearAula" class="btn">Nueva aula</button>
+
+    <section>
+        {% for aula in aulas %}
+        <div class="card">
+            <i class="fas fa-edit icon-left editIcon" data-id="{{ aula.id }}"></i>
+            <form action="{% url 'aula_delete' aula.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="icon-right btn-delete"><i class="fas fa-trash"></i></button>
+            </form>
+            <h2>{{aula.numero}}</h2>
+            <p><strong>Capacidad</strong> {{aula.capacidad}} </p>
+            <p><strong>Edificio</strong> {{aula.edificio}}</p>
+            <p><strong>Piso</strong> {{aula.piso}}</p>
+            <p><strong>Ubicacion</strong> {{aula.ubicacion}}</p>
+        </div>        
+        {% endfor %}
+    </section>
+    
+{% endblock %}

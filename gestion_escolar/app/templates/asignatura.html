@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <button id="btnCrearAsig" class="btn">Nueva Asignatura</button>
+
+    <section>
+        {% for asig in asignatura %}
+        <div class="card">
+            <i class="fas fa-edit icon-left editAsigIcon" data-id="{{ asig.id }}"></i>
+            <form action="{% url 'asignatura_delete' asig.id %}" method="post" class="delete-form-asig">
+                {% csrf_token %}
+                <button type="submit" class="icon-right btn-delete"><i class="fas fa-trash"></i></button>
+            </form>
+            <h2>{{asig.nombre}}</h2>
+            <p><strong>Descripcion</strong> {{asig.descripcion}}</p>
+            <p><strong>Creditos</strong> {{asig.creditos}}</p>
+        </div>        
+        {% endfor %}
+    </section>
+    
+{% endblock %}
